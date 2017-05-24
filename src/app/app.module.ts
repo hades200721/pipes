@@ -4,10 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { ShortenPipe } from './shorten.pipe';
-import { FilterPipe } from './filter.pipe';
-import { ReversePipe } from './reverse.pipe';
-import { SortAlphabeticalPipe } from './sort-alphabetical.pipe';
+import { ShortenPipe } from './pipes/shorten.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
+import { ReversePipe } from './pipes/reverse.pipe';
+import { SortAlphabeticalPipe } from './pipes/sort-alphabetical.pipe';
 import { SearchFormComponent } from './search-form/search-form.component';
 import { DropdownBoxComponent } from './dropdown-box/dropdown-box.component';
 import { DropwdownToggle } from './shared/dropdown.directive';

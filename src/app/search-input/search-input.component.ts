@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
 import { SearchService } from '../search-form/search-form.service';
-// import { Country } from '../shared/country.model';
+import { Country } from '../shared/country.model';
 
 @Component({
   selector: 'app-search-input',
@@ -9,10 +10,16 @@ import { SearchService } from '../search-form/search-form.service';
 })
 export class SearchInputComponent implements OnInit {
 
-  // country: Country;
+  country: Country[];
+  searchVal: Subject<string> = new Subject<string>();
 
   constructor(private searchService: SearchService) {
-    // this.country = new Country('Israel', 'Jerusalem', 8, 250);
+    this.country = [
+      new Country('Israel', 'Jerusalem', 8, 250),
+      new Country('United Kingdom', 'London', 70, 8000),
+      new Country('France', 'Paris', 65, 10000),
+      new Country('Russia', 'Moscow', 150, 180000)      
+      ];
   }
 
   ngOnInit() {
@@ -27,12 +34,15 @@ export class SearchInputComponent implements OnInit {
       );
   }
 
-  //   onSearch(value) {
-  //   const data = { 'search': value };
-  //   this.searchService.getInfo()
-  //     .subscribe(
-  //     (response) => console.info(response),
-  //     (error) => console.info(error)
-  //     );
-  // }
+    setData() {
+    this.searchService.storeInfo(this.country)
+      .subscribe(
+      (response) => console.info(response),
+      (error) => console.info(error)
+      );
+  }
+
+  onKey(val) {
+    this.searchService.updateQuerySearch(val);
+  }
 }
