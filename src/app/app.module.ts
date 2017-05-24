@@ -4,17 +4,36 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { ShortenPipe } from './shorten.pipe';
+import { FilterPipe } from './filter.pipe';
+import { ReversePipe } from './reverse.pipe';
+import { SortAlphabeticalPipe } from './sort-alphabetical.pipe';
+import { SearchFormComponent } from './search-form/search-form.component';
+import { DropdownBoxComponent } from './dropdown-box/dropdown-box.component';
+import { DropwdownToggle } from './shared/dropdown.directive';
+import { SearchInputComponent } from './search-input/search-input.component';
+import { ResultItemComponent } from './result-item/result-item.component';
+import { SearchService } from './search-form/search-form.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ShortenPipe,
+    FilterPipe,
+    ReversePipe,
+    SortAlphabeticalPipe,
+    SearchFormComponent,
+    DropdownBoxComponent,
+    DropwdownToggle,
+    SearchInputComponent,
+    ResultItemComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
