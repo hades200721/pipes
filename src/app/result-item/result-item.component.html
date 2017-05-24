@@ -1,5 +1,7 @@
 <div *ngFor="let country of countries | filter:querySearch" class="col-xs-12 item">
   <h4>Country Name: {{country.name | shorten: 20}}</h4>
+  <h5>Continent:  {{country.continent}}</h5>
+  <h5>Language:  {{country.language}}</h5>
   <h5>Capital: {{country.capital}}</h5>
   <span>Population: {{country.population}}</span>
   <span>Terrtory: {{country.terrtory}}</span>

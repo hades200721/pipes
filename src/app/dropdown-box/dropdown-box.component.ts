@@ -3,6 +3,7 @@ import {
   OnInit,
   Input
  } from '@angular/core';
+import { SearchService } from '../search-form/search-form.service';
 
 @Component({
   selector: 'app-dropdown-box',
@@ -13,9 +14,15 @@ export class DropdownBoxComponent implements OnInit {
 
   @Input('title') title: string;
   @Input('data') list: string[];
-  constructor() { }
+  @Input('property') prop: string;
+
+  constructor(private searchService: SearchService) { }
 
   ngOnInit() {
+  }
+
+  onChange(event) {
+    this.searchService.updateQuerySearch(event.target.value);
   }
 
 }

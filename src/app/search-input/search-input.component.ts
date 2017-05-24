@@ -14,12 +14,12 @@ export class SearchInputComponent implements OnInit {
   searchVal: Subject<string> = new Subject<string>();
 
   constructor(private searchService: SearchService) {
-    this.country = [
-      new Country('Israel', 'Jerusalem', 8, 250),
-      new Country('United Kingdom', 'London', 70, 8000),
-      new Country('France', 'Paris', 65, 10000),
-      new Country('Russia', 'Moscow', 150, 180000)      
-      ];
+    // this.country = [
+    //   new Country('Israel', 'Asia', 'hebrew', 'Jerusalem', 8, 250),
+    //   new Country('United Kingdom', 'Europe', 'english', 'London', 70, 8000),
+    //   new Country('France', 'Europe', 'french', 'Paris', 65, 10000),
+    //   new Country('Russia', 'Euro-Asia', 'russian', 'Moscow', 150, 180000)      
+    //   ];
   }
 
   ngOnInit() {
@@ -34,7 +34,7 @@ export class SearchInputComponent implements OnInit {
       );
   }
 
-    setData() {
+  setData() {
     this.searchService.storeInfo(this.country)
       .subscribe(
       (response) => console.info(response),

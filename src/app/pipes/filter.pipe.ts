@@ -12,7 +12,7 @@ export class FilterPipe implements PipeTransform {
     }
     const resultArray = [];
     for (const item of value) {
-      if ((<string>item.name).indexOf(filterString) > -1) {
+      if ((<string>item.language).indexOf(filterString) > -1) {
         resultArray.push(item);
       }
     }

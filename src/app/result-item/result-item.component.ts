@@ -11,22 +11,22 @@ import { Country } from '../shared/country.model';
 export class ResultItemComponent implements OnInit {
 
   querySearch: string = '';
-  countries: Country[];
+  countries: Country[] = [];
 
   constructor(private searchService: SearchService) {
-    this.countries = [
-      new Country('Israel', 'Jerusalem', 8, 250),
-      new Country('United Kingdom', 'London', 70, 8000),
-      new Country('France', 'Paris', 65, 10000),
-      new Country('Russia', 'Moscow', 150, 180000)
-    ];
+    // this.countries = [
+    //   new Country('Israel', 'Jerusalem', 8, 250),
+    //   new Country('United Kingdom', 'London', 70, 8000),
+    //   new Country('France', 'Paris', 65, 10000),
+    //   new Country('Russia', 'Moscow', 150, 180000)
+    // ];
   }
 
   ngOnInit() {
     this.searchService.getInfo()
       .subscribe(
-      (response: any[]) => {
-        console.info(response);
+      (response: Country[]) => {
+        this.countries = response;
       },
       (error) => console.info(error)
       );
