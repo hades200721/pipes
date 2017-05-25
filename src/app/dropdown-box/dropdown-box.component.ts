@@ -1,8 +1,9 @@
-import { 
-  Component, 
+import {
+  Component,
   OnInit,
   Input
- } from '@angular/core';
+} from '@angular/core';
+import { ActivatedRoute, Params, Router, Data } from '@angular/router';
 import { SearchService } from '../search-form/search-form.service';
 
 @Component({

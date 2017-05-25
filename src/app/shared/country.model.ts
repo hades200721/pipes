@@ -1,18 +1,18 @@
 export class Country {
 
     public name: string;
-    public continent: string;
-    public language: string;
+    public region: string;
+    public languages: string[];
     public capital: string;
     public population: number;
-    public terrtory: number;
+    public area: number;
 
-    constructor(name: string, continent:string, language: string, capital: string, population: number, terrtory: number) {
+    constructor(name: string, region:string, languages: string[], capital: string, population: number, area: number) {
         this.name = name;
-        this.continent = continent;
-        this.language = language;
+        this.region = region;
+        this.languages = languages;
         this.capital = capital;
         this.population = population;
-        this.terrtory = terrtory;
+        this.area = area;
     }
 }

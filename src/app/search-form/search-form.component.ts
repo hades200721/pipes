@@ -10,7 +10,7 @@ import { SearchService } from './search-form.service';
 export class SearchFormComponent implements OnInit, OnDestroy {
 
   languages: string[];
-  continent: string[];
+  regions: string[];
   langSubscription: Subscription;
   continentSubscription: Subscription;
 
@@ -30,10 +30,10 @@ export class SearchFormComponent implements OnInit, OnDestroy {
 
     // subscribing continentes whenever continentes list has been changes, we update data sent to dropdown component
     this.continentSubscription =
-    this.searchService.continentesChanged
+    this.searchService.regionsChanged
       .subscribe(
-      (continent: string[]) => {
-        this.continent = continent;
+      (regions: string[]) => {
+        this.regions = regions;
       }
       )
   }

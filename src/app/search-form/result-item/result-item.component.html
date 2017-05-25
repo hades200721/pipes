@@ -1,0 +1,12 @@
+<!--<div *ngFor="let country of countries | searchByName:querySearch | filter:filterParams" class="col-xs-6 item">-->
+  <div *ngFor="let country of countries | filter:filterParams" class="col-xs-6 item">
+  <!--<h4 class="bg-warning text-center">{{country.name | shorten: 30}}</h4>
+  <div class="left-side bg-success">region:</div><div class="right-side bg-primary">{{country.region || '-'}}</div>
+  <div class="left-side bg-success">Languages:</div><div class="right-side bg-primary"><span *ngFor="let lang of country.languages">{{lang}},</span></div>
+  <div class="left-side bg-success">Capital:</div><div class="right-side bg-primary">{{country.capital || '-'}}</div>
+  <div class="left-side bg-success">Population:</div><div class="right-side bg-primary">{{country.population || '-'}}</div>
+  <div class="left-side bg-success">Terrtory:</div><div class="right-side bg-primary">{{country.area || '-'}}</div>-->
+  <div [class.title]="firstItem" *ngFor="let param of params; let firstItem = first ">
+  <div class="left-side bg-success">{{param}}:</div><div class="right-side bg-primary">{{country[param] || '-'}}</div>
+  </div>
+</div>

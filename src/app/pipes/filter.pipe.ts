@@ -14,6 +14,7 @@ export class FilterPipe implements PipeTransform {
     value.forEach(element => {
       let match = true;
       for (const prop in filterString) {
+        if (filterString[prop] === '') { break; }
         if (element[prop] !== filterString[prop]) {
           match = false;
           break;

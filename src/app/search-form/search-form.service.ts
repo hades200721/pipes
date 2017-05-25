@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Http, Headers, Response } from '@angular/http';
+import { properties } from '../shared/variables.const';
 import 'rxjs/Rx';
 
 @Injectable()
@@ -10,47 +12,64 @@ export class SearchService {
     querySearchChanged: Subject<string> = new Subject<string>();
     filterParamsChanged: Subject<string> = new Subject<string>();
     languagesChanged: Subject<string[]> = new Subject<string[]>();
-    continentesChanged: Subject<string[]> = new Subject<string[]>();
+    regionsChanged: Subject<string[]> = new Subject<string[]>();
+    resultChanged: Subject<string[]> = new Subject<string[]>();
     searchQuery: any = {};
     filterParams: any = {};
     languages: string[];
-    continentes: string[];
+    regions: string[];
 
-    constructor(private http: Http) { }
+    constructor(
+        private http: Http,
+        private router: Router,
+        private route: ActivatedRoute) {
+        for (let param in this.route.snapshot.queryParams) {
+            if (param !== 'search') {
+                this.filterParams[param] = route.snapshot.queryParams[param];
+            }
+            this.filterParamsChanged.next(this.filterParams);
+        }
+    }
 
     header: Headers = new Headers({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
     })
 
-    getInfo() {
-        return this.http.get('https://sandbox-de210.firebaseio.com/data.json', { headers: this.header })
+    getInfo(name) {
+        return this.http.get('https://restcountries.eu/rest/v2/name/' + name, { headers: this.header })
             .map(
             (response: Response) => {
                 const data = response.json();
-                this.setLanguages(data);
+                // subset the response data to out properties
+                let subsetData = [];
+                data.forEach((element) => {
+                    const subset = properties.reduce((a, e) => (a[e] = element[e], a), {});
+                    subsetData.push(subset);
+                })
+                this.setLanguages(subsetData);
                 this.languagesChanged.next(this.languages);
-                this.setContinentes(data);
-                this.continentesChanged.next(this.continentes);
-                return data;
+                this.setRegions(subsetData);
+                this.regionsChanged.next(this.regions);
+                return subsetData;
             }
             )
     }
 
-    public storeInfo(data: any) {
-        return this.http.put('https://sandbox-de210.firebaseio.com/data.json', data, { headers: this.header });
+    public setCountries(countries: any) {
+        this.resultChanged.next(countries);
     }
 
     setLanguages(data) {
-        const languages = data.map( country => country.language );
+        const languages = data.map(country => country.language);
         this.languages = data.map(country => country.language).filter(function (item, pos) {
             return languages.indexOf(item) == pos;
         });
     }
-    
-    setContinentes(data) {
-        const continentes = data.map( country => country.continent );
-        this.continentes = data.map(country => country.continent).filter(function (item, pos) {
-            return continentes.indexOf(item) == pos;
+
+    setRegions(data) {
+        const regions = data.map(country => country.region);
+        this.regions = data.map(country => country.region).filter(function (item, pos) {
+            return regions.indexOf(item) == pos;
         });
     }
 
@@ -62,7 +81,8 @@ export class SearchService {
 
     // query search params
     updateFilterParams(propName, value) {
-        this.filterParams[propName] = value
+        this.filterParams[propName] = value;
         this.filterParamsChanged.next(this.filterParams);
+        // this.router.navigate([''], { relativeTo: this.route, queryParams: this.filterParams });
     }
 }

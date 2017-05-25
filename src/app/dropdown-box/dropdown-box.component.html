@@ -1,7 +1,9 @@
 <div class="col-md-4">
+  <h3>Filter by:</h3>
   <label> {{title}}
-      <select class="form-control" (change)="onChange($event)">
-        <option *ngFor="let item of list">{{item}}</option>
+      <select class="dropdown-filter" (change)="onChange($event)">
+        <option value="">Any</option>
+        <option *ngFor="let item of list">{{item || '--NA--'}}</option>
       </select>
     </label>
 </div>
