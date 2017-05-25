@@ -9,8 +9,12 @@ export class SearchService {
 
     querySearchChanged: Subject<string> = new Subject<string>();
     filterParamsChanged: Subject<string> = new Subject<string>();
+    languagesChanged: Subject<string[]> = new Subject<string[]>();
+    continentesChanged: Subject<string[]> = new Subject<string[]>();
     searchQuery: any = {};
     filterParams: any = {};
+    languages: string[];
+    continentes: string[];
 
     constructor(private http: Http) { }
 
@@ -23,6 +27,10 @@ export class SearchService {
             .map(
             (response: Response) => {
                 const data = response.json();
+                this.setLanguages(data);
+                this.languagesChanged.next(this.languages);
+                this.setContinentes(data);
+                this.continentesChanged.next(this.continentes);
                 return data;
             }
             )
@@ -32,8 +40,22 @@ export class SearchService {
         return this.http.put('https://sandbox-de210.firebaseio.com/data.json', data, { headers: this.header });
     }
 
+    setLanguages(data) {
+        const languages = data.map( country => country.language );
+        this.languages = data.map(country => country.language).filter(function (item, pos) {
+            return languages.indexOf(item) == pos;
+        });
+    }
+    
+    setContinentes(data) {
+        const continentes = data.map( country => country.continent );
+        this.continentes = data.map(country => country.continent).filter(function (item, pos) {
+            return continentes.indexOf(item) == pos;
+        });
+    }
+
     // query search params
-    updateQuerySearch( value) {
+    updateQuerySearch(value) {
         this.searchQuery = value
         this.querySearchChanged.next(this.searchQuery);
     }
