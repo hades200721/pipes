@@ -1,4 +1,4 @@
-<div *ngFor="let country of countries | filter:querySearch" class="col-xs-12 item">
+<div *ngFor="let country of countries | searchByName:querySearch | filter:filterParams" class="col-xs-12 item">
   <h4><span class="bg-info">Country Name:</span> <span class="bg-warning">{{country.name | shorten: 20}}</span></h4>
   <h5><span class="bg-info">Continent:</span>  <span class="bg-warning">{{country.continent}}</span></h5>
   <h5><span class="bg-info">Language:</span>  <span class="bg-warning">{{country.language}}</span></h5>

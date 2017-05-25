@@ -14,6 +14,7 @@ import { DropwdownToggle } from './shared/dropdown.directive';
 import { SearchInputComponent } from './search-input/search-input.component';
 import { ResultItemComponent } from './result-item/result-item.component';
 import { SearchService } from './search-form/search-form.service';
+import { SearchByNamePipe } from './pipes/search-by-name.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SearchService } from './search-form/search-form.service';
     DropdownBoxComponent,
     DropwdownToggle,
     SearchInputComponent,
-    ResultItemComponent
+    ResultItemComponent,
+    SearchByNamePipe
   ],
   imports: [
     BrowserModule,

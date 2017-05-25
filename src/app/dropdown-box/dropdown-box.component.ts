@@ -22,7 +22,7 @@ export class DropdownBoxComponent implements OnInit {
   }
 
   onChange(event) {
-    this.searchService.updateQuerySearch(this.prop, event.target.value);
+    this.searchService.updateFilterParams(this.prop, event.target.value);
   }
 
 }

@@ -10,17 +10,11 @@ import { Country } from '../shared/country.model';
 })
 export class ResultItemComponent implements OnInit {
 
-  querySearch: any[] = [];
+  querySearch: string = '';
+  filterParams: any[] = [];
   countries: Country[] = [];
 
-  constructor(private searchService: SearchService) {
-    // this.countries = [
-    //   new Country('Israel', 'Jerusalem', 8, 250),
-    //   new Country('United Kingdom', 'London', 70, 8000),
-    //   new Country('France', 'Paris', 65, 10000),
-    //   new Country('Russia', 'Moscow', 150, 180000)
-    // ];
-  }
+  constructor(private searchService: SearchService) { }
 
   ngOnInit() {
     this.searchService.getInfo()
@@ -34,8 +28,13 @@ export class ResultItemComponent implements OnInit {
       this.searchService.querySearchChanged
       .subscribe(
         (query: any) => {
-          // this.querySearch = query;
           this.querySearch = query;
+        }
+      )      
+      this.searchService.filterParamsChanged
+      .subscribe(
+        (filterParams: any) => {
+          this.filterParams = filterParams;
         }
       )
   }

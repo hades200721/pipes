@@ -50,6 +50,6 @@ export class SearchInputComponent implements OnInit {
 
   onKey(val) {
     // To be changed, not filter but http service setting param
-    // this.searchService.updateQuerySearch(val);
+    this.searchService.updateQuerySearch(val);
   }
 }

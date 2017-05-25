@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'filter',
-  pure: false
+  pure: false // change to false with cuation
 })
 export class FilterPipe implements PipeTransform {
 
@@ -11,18 +11,18 @@ export class FilterPipe implements PipeTransform {
       return value;
     }
     const resultArray = [];
-    for (const item of value) {
+    value.forEach(element => {
       let match = true;
       for (const prop in filterString) {
-        if (item[prop] !== filterString[prop]) {
+        if (element[prop] !== filterString[prop]) {
           match = false;
           break;
         }
       }
       if (match) {
-        resultArray.push(item);
+        resultArray.push(element);
       }
-    }
+    });
     return resultArray;
   }
 
