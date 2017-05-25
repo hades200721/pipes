@@ -8,6 +8,7 @@ import 'rxjs/Rx';
 export class SearchService {
 
     querySearchChanged: Subject<string> = new Subject<string>();
+    searchQuery: any = {};
 
     constructor(private http: Http) { }
 
@@ -30,7 +31,8 @@ export class SearchService {
     }
 
     // query search params
-    updateQuerySearch(value) {
-        this.querySearchChanged.next(value);
+    updateQuerySearch(propName, value) {
+        this.searchQuery[propName] = value
+        this.querySearchChanged.next(this.searchQuery);
     }
 }

@@ -10,7 +10,7 @@ import { Country } from '../shared/country.model';
 })
 export class ResultItemComponent implements OnInit {
 
-  querySearch: string = '';
+  querySearch: any[] = [];
   countries: Country[] = [];
 
   constructor(private searchService: SearchService) {
@@ -33,7 +33,8 @@ export class ResultItemComponent implements OnInit {
 
       this.searchService.querySearchChanged
       .subscribe(
-        (query: string) => {
+        (query: any) => {
+          // this.querySearch = query;
           this.querySearch = query;
         }
       )

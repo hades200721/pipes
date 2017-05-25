@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class SearchFormComponent implements OnInit {
 
   languages = ['english', 'spanish', 'french', 'hebrew', 'russian'];
-  continent = ['comedy', 'drama', 'sci-fi', 'horror'];
+  continent = ['europe', 'asia', 'euro-asia', 'america', 'africa'];
 
   constructor() { }
 
