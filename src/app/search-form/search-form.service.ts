@@ -75,6 +75,7 @@ export class SearchService {
             return languages.indexOf(item) == pos;
         });
     }
+    
 
     setRegions(data) {
         const regions = data.map(country => country.region);

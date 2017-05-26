@@ -3,11 +3,6 @@ h4 {
   border-bottom: 2px solid #ff2072;
 }
 
-.title {
-  font-size: 22px;
-  text-decoration: underline;
-}
-
 .item div {
   max-height: 2em;
   overflow: hidden;

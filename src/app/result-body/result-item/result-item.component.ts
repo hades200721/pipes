@@ -17,6 +17,7 @@ export class ResultItemComponent implements OnInit, OnDestroy {
   countries: Country[] = [];
   itemProperties = [];
   queryParamsSubscription: Subscription;
+  resultSubscription: Subscription;
 
   constructor(
     private searchService: SearchService,
@@ -26,10 +27,15 @@ export class ResultItemComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.searchService.resultChanged
+    this.resultSubscription = this.searchService.resultChanged
       .subscribe(
       (countries: any) => {
         this.countries = countries;
+        // set lagnuages array as string
+        this.countries.forEach(elm => {
+          elm['languages'] = this.concateLanguages(elm);
+        })
+
       },
       (error) => console.info(error)
       );
@@ -45,18 +51,19 @@ export class ResultItemComponent implements OnInit, OnDestroy {
       }
       );
 
-    // this.searchService.filterParamsChanged
-    //   .subscribe(
-    //   (filterParams: any) => {
-    //     // this.filterParams = filterParams;
-    //   }
-    //   )
+  }
 
-
+  concateLanguages(country) {
+    let strBuilder = '';
+    country.languages.forEach(element => {
+      strBuilder = strBuilder + ', ' + element.name;
+    });
+    return strBuilder.slice(2);
   }
 
   ngOnDestroy() {
     this.queryParamsSubscription.unsubscribe();
+    this.resultSubscription.unsubscribe();
   }
 
 }

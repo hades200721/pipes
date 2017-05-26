@@ -14,7 +14,7 @@ export class FilterPipe implements PipeTransform {
     value.forEach(element => {
       let match = true;
       for (const prop in filterString) {
-        if (filterString[prop] === '') { break; }
+        if (filterString[prop] === '') { continue; }
         if (element[prop].constructor === Array) {
           let langsAsString = element[prop].map(con => con.name).join('');
           if (langsAsString.indexOf(filterString[prop]) === -1) {
