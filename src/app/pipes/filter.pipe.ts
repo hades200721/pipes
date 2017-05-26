@@ -15,17 +15,9 @@ export class FilterPipe implements PipeTransform {
       let match = true;
       for (const prop in filterString) {
         if (filterString[prop] === '') { continue; }
-        if (element[prop].constructor === Array) {
-          let langsAsString = element[prop].map(con => con.name).join('');
-          if (langsAsString.indexOf(filterString[prop]) === -1) {
-            match = false;
-            break;
-          }
-        } else {
-          if (element[prop] !== filterString[prop]) {
-            match = false;
-            break;
-          }
+        if (element[prop].indexOf(filterString[prop]) === -1) {
+          match = false;
+          break;
         }
       }
       if (match) {
