@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
 import { SearchService } from '../search-form/search-form.service';
 import { Country } from '../shared/country.model';
@@ -15,7 +15,7 @@ export class SearchInputComponent implements OnInit {
   country: Country[];
   searchVal: Subject<string> = new Subject<string>();
 
-  constructor(private searchService: SearchService, private route: ActivatedRoute) {
+  constructor(private searchService: SearchService, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit() {
@@ -39,7 +39,10 @@ export class SearchInputComponent implements OnInit {
       (response: Country[]) => {
         this.searchService.setCountries(response);
       },
-      (error) => console.info(error)
+      (error) => {
+        console.info(error);
+        this.router.navigate(['no-countries']);
+      }
       );
   }
 
