@@ -6,7 +6,8 @@
   <div class="left-side bg-success">Capital:</div><div class="right-side bg-primary">{{country.capital || '-'}}</div>
   <div class="left-side bg-success">Population:</div><div class="right-side bg-primary">{{country.population || '-'}}</div>
   <div class="left-side bg-success">Terrtory:</div><div class="right-side bg-primary">{{country.area || '-'}}</div>-->
-  <div [class.title]="firstItem" *ngFor="let param of params; let firstItem = first ">
+  <h4 class="bg-warning text-center">{{country.name | shorten: 30}}</h4>
+  <div *ngFor="let param of params | slice:1">
   <div class="left-side bg-success">{{param}}:</div><div class="right-side bg-primary">{{country[param] || '-'}}</div>
   </div>
 </div>

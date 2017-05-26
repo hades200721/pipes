@@ -3,8 +3,9 @@ h4 {
   border-bottom: 2px solid #ff2072;
 }
 
-.firstItem {
+.title {
   font-size: 22px;
+  text-decoration: underline;
 }
 
 .item div {

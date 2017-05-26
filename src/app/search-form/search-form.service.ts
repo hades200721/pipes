@@ -60,8 +60,18 @@ export class SearchService {
     }
 
     setLanguages(data) {
-        const languages = data.map(country => country.language);
-        this.languages = data.map(country => country.language).filter(function (item, pos) {
+        const languagesArr = data.map(country => country.languages);
+        let langName = []
+        languagesArr.forEach((element) => {
+            langName.push(element.map(country => country.name))
+        })
+        let languages = [];
+        langName.forEach((element) => {
+            element.forEach((singleLang) => {
+                languages.push(singleLang);
+            });
+        })
+        this.languages = languages.filter(function (item, pos) {
             return languages.indexOf(item) == pos;
         });
     }
