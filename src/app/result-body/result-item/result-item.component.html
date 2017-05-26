@@ -7,7 +7,7 @@
   <div class="left-side bg-success">Population:</div><div class="right-side bg-primary">{{country.population || '-'}}</div>
   <div class="left-side bg-success">Terrtory:</div><div class="right-side bg-primary">{{country.area || '-'}}</div>-->
   <h4 class="bg-warning text-center">{{country.name | shorten: 30}}</h4>
-  <div *ngFor="let param of params | slice:1">
-  <div class="left-side bg-success">{{param}}:</div><div class="right-side bg-primary">{{country[param] || '-'}}</div>
+  <div *ngFor="let prop of itemProperties | slice:1">
+  <div class="left-side bg-success">{{prop}}:</div><div class="right-side bg-primary">{{country[prop] || '-'}}</div>
   </div>
 </div>

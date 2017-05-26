@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Response } from '@angular/http';
+import { ActivatedRoute, Router, Params } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 import { SearchService } from '../../search-form/search-form.service';
 import { Country } from '../../shared/country.model';
 import { properties } from '../../shared/variables.const';
@@ -9,15 +11,18 @@ import { properties } from '../../shared/variables.const';
   templateUrl: './result-item.component.html',
   styleUrls: ['./result-item.component.css']
 })
-export class ResultItemComponent implements OnInit {
+export class ResultItemComponent implements OnInit, OnDestroy {
 
-  querySearch: string = '';
   filterParams: any[] = [];
   countries: Country[] = [];
-  params = []
+  itemProperties = [];
+  queryParamsSubscription: Subscription;
 
-  constructor(private searchService: SearchService) { 
-    this.params = properties;
+  constructor(
+    private searchService: SearchService,
+    private route: ActivatedRoute,
+    private router: Router) {
+    this.itemProperties = properties;
   }
 
   ngOnInit() {
@@ -29,19 +34,29 @@ export class ResultItemComponent implements OnInit {
       (error) => console.info(error)
       );
 
-    this.searchService.querySearchChanged
-      .subscribe(
-      (query: any) => {
-        this.querySearch = query;
-      }
-      )
-    this.searchService.filterParamsChanged
-      .subscribe(
-      (filterParams: any) => {
-        this.filterParams = filterParams;
-      }
-      )
 
+    this.queryParamsSubscription = this.route.queryParams
+      .subscribe(
+      (queryParams: Params) => {
+        let lang = queryParams['languages'];
+        this.filterParams['languages'] = lang || '';
+        let region = queryParams['region'];
+        this.filterParams['region'] = region || '';
+      }
+      );
+
+    // this.searchService.filterParamsChanged
+    //   .subscribe(
+    //   (filterParams: any) => {
+    //     // this.filterParams = filterParams;
+    //   }
+    //   )
+
+
+  }
+
+  ngOnDestroy() {
+    this.queryParamsSubscription.unsubscribe();
   }
 
 }

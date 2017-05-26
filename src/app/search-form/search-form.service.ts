@@ -40,7 +40,7 @@ export class SearchService {
             .map(
             (response: Response) => {
                 const data = response.json();
-                // subset the response data to out properties
+                // subset the response data to out properties only according to our "properties" from variables file
                 let subsetData = [];
                 data.forEach((element) => {
                     const subset = properties.reduce((a, e) => (a[e] = element[e], a), {});
@@ -92,7 +92,7 @@ export class SearchService {
     // query search params
     updateFilterParams(propName, value) {
         this.filterParams[propName] = value;
-        this.filterParamsChanged.next(this.filterParams);
-        // this.router.navigate([''], { relativeTo: this.route, queryParams: this.filterParams });
+        // this.filterParamsChanged.next(this.filterParams);
+        this.router.navigate([''], { relativeTo: this.route, preserveFragment: true, queryParams: this.filterParams });
     }
 }

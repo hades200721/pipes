@@ -1,6 +1,8 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router, Params } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { Subject } from 'rxjs/Subject';
+import { Subscription } from 'rxjs/Subscription';
 import { SearchService } from '../search-form/search-form.service';
 import { Country } from '../shared/country.model';
 
@@ -9,41 +11,52 @@ import { Country } from '../shared/country.model';
   templateUrl: './search-input.component.html',
   styleUrls: ['./search-input.component.css']
 })
-export class SearchInputComponent implements OnInit {
+export class SearchInputComponent implements OnInit, OnDestroy {
 
-  @ViewChild('input') searchInput: ElementRef;
+  val: string = '';
   country: Country[];
   searchVal: Subject<string> = new Subject<string>();
+  fragmentSubscription: Subscription;
 
-  constructor(private searchService: SearchService, private route: ActivatedRoute, private router: Router) {
+  constructor(
+    private searchService: SearchService,
+    private route: ActivatedRoute,
+    private router: Router) {
   }
 
   ngOnInit() {
-    // http://localhost:4200/canada?language=russian&continent=europe
-    // console.info('query params: ' + this.route.snapshot.queryParams);
-    // console.info('query params: ' + this.route.snapshot.params);
-    // setTimeout(
-    //   () => {
-    //     for (let param in this.route.snapshot.queryParams) {
-    //       if (param === 'search') {
-    //         this.searchInput.nativeElement.value = this.route.snapshot.queryParams[param];
-    //         this.onKey();
-    //       }
-    //     }
-    //   }, 2000);
+    // this.searchInput.nativeElement.value = this.route.snapshot.params['name'];
+
+    this.fragmentSubscription = this.route.fragment
+      .subscribe(
+      (fragment: string) => {
+        this.val = fragment;
+        if (this.val) {
+          this.onSearch();
+        }
+      }
+      );
+  }
+
+  onKeyUp() {
+    this.router.navigate([''], { fragment: this.val });
   }
 
   onSearch() {
-    this.searchService.getInfo(this.searchInput.nativeElement.value)
+    this.searchService.getInfo(this.val)
       .subscribe(
       (response: Country[]) => {
         this.searchService.setCountries(response);
       },
       (error) => {
-        console.info(error);
+        console.warn(error);
         this.router.navigate(['no-countries']);
       }
       );
+  }
+
+  ngOnDestroy() {
+    this.fragmentSubscription.unsubscribe();
   }
 
 }

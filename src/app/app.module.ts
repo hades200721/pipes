@@ -2,8 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule, Routes } from '@angular/router';
-
 import { AppComponent } from './app.component';
 import { ShortenPipe } from './pipes/shorten.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
@@ -16,11 +14,8 @@ import { ResultItemComponent } from './result-body/result-item/result-item.compo
 import { SearchService } from './search-form/search-form.service';
 import { EmptyContentComponent } from './empty-content/empty-content.component';
 import { ResultBodyComponent } from './result-body/result-body.component';
+import { AppRoutingModule } from './app-routing.module';
 
-const appRoutes: Routes = [
-  { path: 'no-countries', component: EmptyContentComponent },
-  { path: '**', component: ResultBodyComponent },
-]
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +34,7 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    AppRoutingModule
   ],
   providers: [SearchService],
   bootstrap: [AppComponent]

@@ -3,13 +3,12 @@
     <div class="col-md-6">
       <div id="zikit-search-input">
         <div class="input-group col-md-12">
-          <input #input type="text" class="form-control input-lg" placeholder="Country?" (keyup)="onSearch()" />
+          <input [(ngModel)]="val" type="text" class="form-control input-lg" placeholder="Country?" (keyup)="onKeyUp()" />
           <span class="input-group-btn">
               <button class="btn btn-info btn-lg" type="button" (click)="onSearch()">
                   <i class="glyphicon glyphicon-search"></i>
               </button>
           </span>
-          <!--<button class="btn btn-info btn-lg" type="button" (click)="setData()">fill database (firebase)</button>-->
         </div>
       </div>
     </div>
