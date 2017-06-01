@@ -1,10 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Response } from '@angular/http';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { SearchService } from '../../search-form/search-form.service';
-import { Country } from '../../shared/country.model';
 import { properties } from '../../shared/variables.const';
+import { Country } from '../../shared/country.model';
 
 @Component({
   selector: 'app-result-item',
@@ -13,11 +13,8 @@ import { properties } from '../../shared/variables.const';
 })
 export class ResultItemComponent implements OnInit, OnDestroy {
 
-  filterParams: any[] = [];
-  countries: Country[] = [];
+  @Input('data') country: Country;
   itemProperties = [];
-  queryParamsSubscription: Subscription;
-  resultSubscription: Subscription;
 
   constructor(
     private searchService: SearchService,
@@ -26,44 +23,9 @@ export class ResultItemComponent implements OnInit, OnDestroy {
     this.itemProperties = properties;
   }
 
-  ngOnInit() {
-    this.resultSubscription = this.searchService.resultChanged
-      .subscribe(
-      (countries: any) => {
-        this.countries = countries;
-        // set lagnuages array as string
-        this.countries.forEach(elm => {
-          elm['languages'] = this.concateLanguages(elm);
-        })
-
-      },
-      (error) => console.info(error)
-      );
-
-
-    this.queryParamsSubscription = this.route.queryParams
-      .subscribe(
-      (queryParams: Params) => {
-        let lang = queryParams['languages'];
-        this.filterParams['languages'] = lang || '';
-        let region = queryParams['region'];
-        this.filterParams['region'] = region || '';
-      }
-      );
-
-  }
-
-  concateLanguages(country) {
-    let strBuilder = '';
-    country.languages.forEach(element => {
-      strBuilder = strBuilder + ', ' + element.name;
-    });
-    return strBuilder.slice(2);
-  }
+  ngOnInit() {}
 
   ngOnDestroy() {
-    this.queryParamsSubscription.unsubscribe();
-    this.resultSubscription.unsubscribe();
   }
 
 }

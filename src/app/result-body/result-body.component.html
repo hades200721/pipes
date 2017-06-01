@@ -1,8 +1,9 @@
 <div *ngIf="languages.length > 0 || regions.length > 0">
-<app-dropdown-box [title]="'Language'" [data]="languages" [property]="'languages'">
-</app-dropdown-box>
-<app-dropdown-box [title]="'Regions'" [data]="regions" [property]="'region'">
-</app-dropdown-box>
+    <app-dropdown-box [title]="'Language'" [data]="languages" [property]="'languages'">
+    </app-dropdown-box>
+    <app-dropdown-box [title]="'Regions'" [data]="regions" [property]="'region'">
+    </app-dropdown-box>
 </div>
 
-<app-result-item> </app-result-item>
+<h3>{{filteredCount?.count}} Countries were found</h3>
+<app-result-item *ngFor="let country of countries | filter:filterParams:filteredCount" [data]="country"> </app-result-item>

@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(value: any, filterString: any): any {
+  transform(value: any, filterString: any, filteredCount: any): any {
     if (value.length === 0 || filterString === '') {
       return value;
     }
@@ -24,6 +24,7 @@ export class FilterPipe implements PipeTransform {
         resultArray.push(element);
       }
     });
+    filteredCount.count = resultArray.length;
     return resultArray;
   }
 

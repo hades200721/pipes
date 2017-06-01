@@ -5,10 +5,8 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { ShortenPipe } from './pipes/shorten.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
-import { SortAlphabeticalPipe } from './pipes/sort-alphabetical.pipe';
 import { SearchFormComponent } from './search-form/search-form.component';
 import { DropdownBoxComponent } from './dropdown-box/dropdown-box.component';
-import { DropwdownToggle } from './shared/dropdown.directive';
 import { SearchInputComponent } from './search-input/search-input.component';
 import { ResultItemComponent } from './result-body/result-item/result-item.component';
 import { SearchService } from './search-form/search-form.service';
@@ -21,10 +19,8 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent,
     ShortenPipe,
     FilterPipe,
-    SortAlphabeticalPipe,
     SearchFormComponent,
     DropdownBoxComponent,
-    DropwdownToggle,
     SearchInputComponent,
     ResultItemComponent,
     EmptyContentComponent,

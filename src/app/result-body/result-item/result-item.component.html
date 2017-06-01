@@ -1,7 +1,7 @@
-<div *ngFor="let country of countries | filter:filterParams" class="col-xs-6 item">
+<div class="col-xs-6 item">
   <h4 class="bg-warning text-center">{{country[itemProperties[0]] | shorten: 30}}</h4>
   <div *ngFor="let prop of itemProperties | slice:1">
     <div class="left-side bg-success">{{prop}}:</div>
-    <div class="right-side bg-primary">{{country[prop] || '-'}}</div>
+    <div class="right-side bg-primary">{{country[prop] | shorten: 25}}</div>
   </div>
 </div>
