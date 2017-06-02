@@ -1,5 +1,7 @@
-<app-dropdown-box [title]="'Language'" [data]="languages" [property]="'languages'">
-</app-dropdown-box>
-<app-dropdown-box [title]="'Regions'" [data]="regions" [property]="'region'">
-</app-dropdown-box>
+<div class="row">
+    <app-dropdown-box [title]="'Language'" [data]="languages" [property]="'languages'">
+    </app-dropdown-box>
+    <app-dropdown-box [title]="'Regions'" [data]="regions" [property]="'region'">
+    </app-dropdown-box>
+</div>
 <app-grid [filter]="filterParams"> </app-grid>

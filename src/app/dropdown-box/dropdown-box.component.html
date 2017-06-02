@@ -1,6 +1,6 @@
-<div class="col-md-6">
+<div class="col-md-6 col-sm-6 col-xs-8">
   <h3>Filter by:</h3>
-  <label> {{title}}
+  <label style="display:flex; line-height: 2"> {{title}}
       <select [ngModel]="val" class="dropdown-filter" (change)="onChange($event)">
         <option default value="">Any</option>
         <option *ngFor="let item of list">{{item || '--NA--'}}</option>
