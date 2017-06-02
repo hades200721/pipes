@@ -49,7 +49,7 @@ export class SearchInputComponent implements OnInit, OnDestroy {
         this.searchService.setCountries(response);
       },
       (error) => {
-        console.warn(error);
+        console.warn(error.json());
         this.router.navigate(['no-countries']);
       }
       );
