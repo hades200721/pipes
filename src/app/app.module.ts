@@ -8,7 +8,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { SearchFormComponent } from './search-form/search-form.component';
 import { DropdownBoxComponent } from './dropdown-box/dropdown-box.component';
 import { SearchInputComponent } from './search-input/search-input.component';
-import { ResultItemComponent } from './result-body/result-item/result-item.component';
+import { ResultItemComponent } from './result-body/grid/result-item/result-item.component';
 import { SearchService } from './search-form/search-form.service';
 import { EmptyContentComponent } from './empty-content/empty-content.component';
 import { ResultBodyComponent } from './result-body/result-body.component';

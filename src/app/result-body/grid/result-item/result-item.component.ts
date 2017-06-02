@@ -2,9 +2,9 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Response } from '@angular/http';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import { SearchService } from '../../search-form/search-form.service';
-import { properties } from '../../shared/variables.const';
-import { Country } from '../../shared/country.model';
+import { SearchService } from '../../../search-form/search-form.service';
+import { properties } from '../../../shared/variables.const';
+import { Country } from '../../../shared/country.model';
 
 @Component({
   selector: 'app-result-item',

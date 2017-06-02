@@ -10,7 +10,7 @@ import { Country } from '../../shared/country.model';
 })
 export class GridComponent implements OnInit, OnDestroy {
 
-  filteredCount = { count: 0 };
+  filteredCount = { count: 0 }; // use filteredCount to display the number of countries after filter - pass by ref and not primitive "number"
   @Input('filter') filterParams;
   countries: Country[] = [];
   resultSubscription: Subscription;
@@ -21,7 +21,7 @@ export class GridComponent implements OnInit, OnDestroy {
       .subscribe(
       (countries: any) => {
         this.countries = countries;
-        // set lagnuages array as string
+        // set lagnuages array as string - for the purpose of display
         this.countries.forEach(elm => {
           elm['languages'] = this.concateLanguages(elm);
         })
