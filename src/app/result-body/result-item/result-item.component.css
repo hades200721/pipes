@@ -5,6 +5,7 @@ h4 {
 
 .item div {
   max-height: 2em;
+  min-height: 2em;
   overflow: hidden;
   text-indent: 4px;
   text-transform: capitalize;
