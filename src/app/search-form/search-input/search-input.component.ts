@@ -3,8 +3,8 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
-import { SearchService } from '../search-form/search-form.service';
-import { Country } from '../shared/country.model';
+import { SearchService } from '../../search-form/search-form.service';
+import { Country } from '../../shared/country.model';
 
 @Component({
   selector: 'app-search-input',
