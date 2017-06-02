@@ -3,19 +3,25 @@ h4 {
   border-bottom: 2px solid #ff2072;
 }
 
+h4::first-letter {
+  font-weight: bold;
+  color: red;
+}
+
 .item div {
   max-height: 2em;
   min-height: 2em;
   overflow: hidden;
   text-indent: 4px;
   text-transform: capitalize;
+  text-overflow: ellipsis;
 }
 
 .item {
-  border: 1px solid #8f8f8f;
+  /*border: 1px solid #8f8f8f;
   border-radius: 10%;
   margin-top: 10px;
-  padding: 10px 10px 15px 10px;
+  padding: 10px 10px 15px 10px;*/
 }
 
 .left-side {
