@@ -3,7 +3,7 @@
   <label style="display:flex; line-height: 2"> {{title}}
       <select [ngModel]="val" class="dropdown-filter" (change)="onChange($event)">
         <option default value="">Any</option>
-        <option *ngFor="let item of list">{{item || '--NA--'}}</option>
+        <option *ngFor="let item of list | sortAlphabetical">{{item || '--NA--'}}</option>
       </select>
     </label>
 </div>

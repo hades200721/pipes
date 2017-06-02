@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { ShortenPipe } from './pipes/shorten.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
+import { SortAlphabeticalPipe } from './pipes/sort-alphabetical.pipe';
 import { SearchFormComponent } from './search-form/search-form.component';
 import { DropdownBoxComponent } from './dropdown-box/dropdown-box.component';
 import { SearchInputComponent } from './search-form/search-input/search-input.component';
@@ -20,6 +21,7 @@ import { GridComponent } from './result-body/grid/grid.component';
     AppComponent,
     ShortenPipe,
     FilterPipe,
+    SortAlphabeticalPipe,
     SearchFormComponent,
     DropdownBoxComponent,
     SearchInputComponent,
