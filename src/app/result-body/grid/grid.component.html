@@ -1,0 +1,2 @@
+<h3>{{filteredCount?.count}} Countries were found</h3>
+<app-result-item *ngFor="let country of countries | filter:filterParams:filteredCount" [data]="country"> </app-result-item>

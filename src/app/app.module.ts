@@ -13,6 +13,7 @@ import { SearchService } from './search-form/search-form.service';
 import { EmptyContentComponent } from './empty-content/empty-content.component';
 import { ResultBodyComponent } from './result-body/result-body.component';
 import { AppRoutingModule } from './app-routing.module';
+import { GridComponent } from './result-body/grid/grid.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AppRoutingModule } from './app-routing.module';
     SearchInputComponent,
     ResultItemComponent,
     EmptyContentComponent,
-    ResultBodyComponent
+    ResultBodyComponent,
+    GridComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@
     </app-dropdown-box>
     <app-dropdown-box [title]="'Regions'" [data]="regions" [property]="'region'">
     </app-dropdown-box>
-    <h3>{{filteredCount?.count}} Countries were found</h3>
-    <app-result-item *ngFor="let country of countries | filter:filterParams:filteredCount" [data]="country"> </app-result-item>
+    <app-grid [filter]="filterParams"> </app-grid>
+    <!--<h3>{{filteredCount?.count}} Countries were found</h3>
+    <app-result-item *ngFor="let country of countries | filter:filterParams:filteredCount" [data]="country"> </app-result-item>-->
 <!--</div>-->
