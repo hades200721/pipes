@@ -1,0 +1,11 @@
+.grid-wrapper {
+    background-color: lightgray;
+    left: 20%;
+    right: 20%;
+    position: absolute;
+}
+
+.item-wrapper {
+    display: inline-block;
+    margin: 20px;
+}

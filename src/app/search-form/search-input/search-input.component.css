@@ -1,3 +1,14 @@
+.search-wrapper {    
+    background: url('/assets/images/header/header.png') no-repeat;
+    background-size: 160%;
+    height: 102px;
+    background-position: 50% 50%;
+    color: white; 
+    font-family: ROBOTO;
+    position: relative;
+    overflow: hidden;
+}
+
 #zikit-search-input{
     border: solid 1px #E4E4E4;
     border-radius: 6px;
@@ -6,12 +17,13 @@
 #zikit-search-input input{
     border: 0;
     box-shadow: none;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 #zikit-search-input button{
     background: none;
     border: 0;
-    color: #666666;
     padding: 0 8px 0 10px;
     border-left: solid 1px #ccc;
 }

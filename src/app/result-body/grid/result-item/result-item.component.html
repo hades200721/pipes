@@ -1,7 +1,9 @@
 <div class="item">
-  <h4 class="bg-warning text-center">{{country[itemProperties[0]] | shorten: 30}}</h4>
+  <img *ngIf="country.region" class="region-img" [src]="'/assets/images/regions/'+country.region+'.png'" alt="{{country.region}}">
+  <img *ngIf="!country.region" class="region-img" [src]="'/assets/images/general/empty.png'" alt="empty">
+  <h4><strong>{{country[itemProperties[0]] | shorten: 12}}</strong></h4>
   <div *ngFor="let prop of itemProperties | slice:1">
-    <div class="left-side bg-success">{{prop}}:</div>
-    <div class="right-side bg-primary">{{country[prop]}}</div>
+    <div class="left-side"><strong>{{prop}}:</strong></div>
+    <div class="right-side">{{country[prop]}}</div>
   </div>
 </div>
