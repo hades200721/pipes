@@ -1,5 +1,5 @@
 <div class="item">
-  <img *ngIf="country.region" class="region-img" [src]="'/assets/images/regions/'+country.region+'.png'" alt="{{country.region}}">
+  <img *ngIf="country.region" class="region-img" [src]="'/assets/images/regions/'+country.region.toLowerCase()+'.png'" alt="{{country.region}}">
   <img *ngIf="!country.region" class="region-img" [src]="'/assets/images/general/empty.png'" alt="empty">
   <h4><strong>{{country[itemProperties[0]] | shorten: 12}}</strong></h4>
   <div *ngFor="let prop of itemProperties | slice:1">
